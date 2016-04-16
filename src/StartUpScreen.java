@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -33,21 +34,22 @@ public class StartUpScreen {
 	
 	public void initialize() {
 		frmNgeSkillCalculator = new JFrame();
+		frmNgeSkillCalculator.setResizable(false);
 		frmNgeSkillCalculator.setTitle("NGE Skill Calculator");
 		frmNgeSkillCalculator.setBounds(100, 100, 450, 300);
 		frmNgeSkillCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNgeSkillCalculator.getContentPane().setLayout(null);
 		
-		JLabel lblHello = new JLabel("Welcome to the NGE Skill Calculator!");
-		lblHello.setBounds(0, 0, 434, 19);
-		lblHello.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblHello.setHorizontalAlignment(SwingConstants.CENTER);
-		frmNgeSkillCalculator.getContentPane().add(lblHello);
+		JLabel welcomeLabel = new JLabel("Welcome to the NGE Skill Calculator!");
+		welcomeLabel.setBounds(0, 0, 434, 19);
+		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		frmNgeSkillCalculator.getContentPane().add(welcomeLabel);
 		
-		JLabel lblPleaseSelectA = new JLabel("Please select a profession to begin.");
-		lblPleaseSelectA.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPleaseSelectA.setBounds(0, 69, 434, 14);
-		frmNgeSkillCalculator.getContentPane().add(lblPleaseSelectA);
+		JLabel selectProfLabel = new JLabel("Please select a profession to begin.");
+		selectProfLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		selectProfLabel.setBounds(0, 69, 434, 14);
+		frmNgeSkillCalculator.getContentPane().add(selectProfLabel);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(160, 94, 114, 20);
@@ -62,11 +64,11 @@ public class StartUpScreen {
 					JediExpertise.NewScreen();
 				}
 				else if (selectedProf == null) {
-					System.out.println("Please select a valid profession.");
+					JOptionPane.showMessageDialog(null, "Please select a valid profession.");
 				}
 			}
 		});
-		btnSelect.setBounds(172, 125, 89, 23);
+		btnSelect.setBounds(182, 125, 79, 23);
 		frmNgeSkillCalculator.getContentPane().add(btnSelect);
 	}
 }
