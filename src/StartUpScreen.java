@@ -1,26 +1,26 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JComboBox;
-import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class StartUpScreen {
 
-	private JFrame frame;
+	private JFrame frmNgeSkillCalculator;
+	public String selectedProf = "";
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					StartUpScreen window = new StartUpScreen();
-					window.frame.setVisible(true);
+					window.frmNgeSkillCalculator.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -28,40 +28,42 @@ public class StartUpScreen {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public StartUpScreen() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmNgeSkillCalculator = new JFrame();
+		frmNgeSkillCalculator.setTitle("NGE Skill Calculator");
+		frmNgeSkillCalculator.setBounds(100, 100, 450, 300);
+		frmNgeSkillCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmNgeSkillCalculator.getContentPane().setLayout(null);
 		
 		JLabel lblHello = new JLabel("Welcome to the NGE Skill Calculator!");
 		lblHello.setBounds(0, 0, 434, 19);
 		lblHello.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblHello.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(lblHello);
+		frmNgeSkillCalculator.getContentPane().add(lblHello);
 		
 		JLabel lblPleaseSelectA = new JLabel("Please select a profession to begin.");
 		lblPleaseSelectA.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPleaseSelectA.setBounds(0, 69, 434, 14);
-		frame.getContentPane().add(lblPleaseSelectA);
+		frmNgeSkillCalculator.getContentPane().add(lblPleaseSelectA);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(160, 94, 114, 20);
-		frame.getContentPane().add(comboBox);
-		AddComboBoxElements();
-	}
-	
-	private void AddComboBoxElements() {
-		System.out.println("Hello, this is a test.");
+		comboBox.addItem("Jedi");
+		frmNgeSkillCalculator.getContentPane().add(comboBox);
+		
+		JButton btnSelect = new JButton("Select");
+		btnSelect.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selectedProf = (String) comboBox.getSelectedItem();
+				CalculatorSkills.NewScreen();
+			}
+		});
+		btnSelect.setBounds(172, 125, 89, 23);
+		frmNgeSkillCalculator.getContentPane().add(btnSelect);
 	}
 }
