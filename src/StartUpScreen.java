@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 public class StartUpScreen {
 
 	private JFrame frmNgeSkillCalculator;
-	public String selectedProf = "";
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,8 +58,15 @@ public class StartUpScreen {
 		btnSelect.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				selectedProf = (String) comboBox.getSelectedItem();
-				CalculatorSkills.NewScreen();
+				String selectedProf = (String) comboBox.getSelectedItem();
+				if (selectedProf != null) {
+					System.out.println("Selected profession: " + selectedProf);
+					CalculatorSkills.NewScreen();
+				}
+				else
+				{
+					System.out.println("Please select a valid profession.");
+				}
 			}
 		});
 		btnSelect.setBounds(172, 125, 89, 23);
