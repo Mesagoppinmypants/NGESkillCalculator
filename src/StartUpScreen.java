@@ -58,11 +58,10 @@ public class StartUpScreen {
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectedProf = (String) comboBox.getSelectedItem();
-				if (selectedProf != null) {
-					CalculatorSkills.NewScreen();
+				if (selectedProf == "Jedi") {
+					JediExpertise.NewScreen();
 				}
-				else
-				{
+				else if (selectedProf == null) {
 					System.out.println("Please select a valid profession.");
 				}
 			}
