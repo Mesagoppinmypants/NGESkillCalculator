@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,12 +6,13 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class StartUpScreen {
 
 	private JFrame frmNgeSkillCalculator;
+	public String selectedProf;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -31,7 +31,7 @@ public class StartUpScreen {
 		initialize();
 	}
 	
-	private void initialize() {
+	public void initialize() {
 		frmNgeSkillCalculator = new JFrame();
 		frmNgeSkillCalculator.setTitle("NGE Skill Calculator");
 		frmNgeSkillCalculator.setBounds(100, 100, 450, 300);
@@ -55,12 +55,10 @@ public class StartUpScreen {
 		frmNgeSkillCalculator.getContentPane().add(comboBox);
 		
 		JButton btnSelect = new JButton("Select");
-		btnSelect.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String selectedProf = (String) comboBox.getSelectedItem();
+		btnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectedProf = (String) comboBox.getSelectedItem();
 				if (selectedProf != null) {
-					System.out.println("Selected profession: " + selectedProf);
 					CalculatorSkills.NewScreen();
 				}
 				else

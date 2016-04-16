@@ -2,7 +2,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 public class CalculatorSkills {
 
@@ -31,14 +30,15 @@ public class CalculatorSkills {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblSelectedProfessionNone = new JLabel("Selected Profession: Test");
-		lblSelectedProfessionNone.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectedProfessionNone.setBounds(243, 26, 198, 14);
 		StartUpScreen sus = new StartUpScreen();
-		String selectedProf = "";
-		if (selectedProf == "") {
-			selectedProf = "No profession selected";
+		String selectedProf = sus.selectedProf;
+		if (selectedProf == null) {
+			selectedProf = "None";
 		}
-		frame.getContentPane().add(lblSelectedProfessionNone);
+		
+		JLabel lblSelectedProfessionTest = new JLabel("Selected Profession: Test");
+		lblSelectedProfessionTest.setBounds(270, 31, 240, 14);
+		lblSelectedProfessionTest.setText("Selected Profession: " + selectedProf);
+		frame.getContentPane().add(lblSelectedProfessionTest);
 	}
 }
