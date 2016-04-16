@@ -4,9 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Image;
+import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Label;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class JediExpertise {
 
@@ -35,7 +40,7 @@ public class JediExpertise {
 		initialize();
 	}
 
-	private void initialize() {
+	public void initialize() {
 		frmJediExpertise = new JFrame();
 		frmJediExpertise.getContentPane().setBackground(new Color(0, 128, 128));
 		frmJediExpertise.setResizable(false);
@@ -45,6 +50,16 @@ public class JediExpertise {
 		frmJediExpertise.getContentPane().setLayout(null);
 		
 		JLabel strImg = new JLabel("");
+		strImg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (enhancedStr < 2) {
+					availablePoints--;
+					enhancedStr++;
+				}
+				System.out.println("Available Points: " + availablePoints + "\nEnhanced Strength Points: " + enhancedStr);
+			}
+		});
 		if (enhancedStr == 0) {
 			Image imgStr = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Strength/StrengthAvailable.png")).getImage();
 			strImg.setIcon(new ImageIcon(imgStr));
@@ -81,5 +96,36 @@ public class JediExpertise {
 		label.setAlignment(Label.CENTER);
 		label.setBounds(10, 10, 115, 22);
 		frmJediExpertise.getContentPane().add(label);
+		
+		Checkbox addCheckBox = new Checkbox("Add Points");
+		addCheckBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (addCheckBox.getState() == true) {
+					System.out.println("Debug Message: 'Add Points' is on.");
+				}
+				else
+				{
+					System.out.println("Debug Message: 'Add Points' is off.");
+				}
+			}
+		});
+		addCheckBox.setState(true);
+		addCheckBox.setBounds(10, 38, 95, 22);
+		frmJediExpertise.getContentPane().add(addCheckBox);
+		
+		Checkbox removeCheckBox = new Checkbox("Remove Points");
+		removeCheckBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (removeCheckBox.getState() == true) {
+					System.out.println("Debug Message: 'Remove Points' is on.");
+				}
+				else
+				{
+					System.out.println("Debug Message: 'Remove Points' is Off.");
+				}
+			}
+		});
+		removeCheckBox.setBounds(10, 66, 95, 22);
+		frmJediExpertise.getContentPane().add(removeCheckBox);
 	}
 }
