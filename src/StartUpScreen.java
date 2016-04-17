@@ -17,6 +17,7 @@ public class StartUpScreen {
 
 	private JFrame frmNgeSkillCalculator;
 	public String selectedProf;
+	public String availableProfessions[] = {"Jedi", "Bounty Hunter"};
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,9 +59,9 @@ public class StartUpScreen {
 		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frmNgeSkillCalculator.getContentPane().add(welcomeLabel);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		
+		JComboBox<?> comboBox = new JComboBox<Object>(availableProfessions);
 		comboBox.setBounds(165, 206, 114, 20);
-		comboBox.addItem("Jedi");
 		frmNgeSkillCalculator.getContentPane().add(comboBox);
 		
 		JButton btnSelect = new JButton("Select");
@@ -69,6 +70,9 @@ public class StartUpScreen {
 				selectedProf = (String) comboBox.getSelectedItem();
 				if (selectedProf == "Jedi") {
 					JediExpertise.NewScreen();
+				}
+				else if (selectedProf == "Bounty Hunter") {
+					JOptionPane.showMessageDialog(null, "The 'Bounty Hunter' skill expertise is currently not implemented.");
 				}
 				else if (selectedProf == null) {
 					JOptionPane.showMessageDialog(null, "Please select a valid profession.");
