@@ -12,6 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Toolkit;
 
 public class JediExpertise {
 
@@ -26,6 +27,22 @@ public class JediExpertise {
 	private int availablePoints = 45;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	
+	// Enhanced Strength
+	Image imgStrSpent = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Strength/StrengthSpent.png")).getImage();
+	Image imgStrAvail = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Strength/StrengthAvailable.png")).getImage();
+	
+	// Enhanced Constitution
+	Image imgConSpent = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConSpent.png")).getImage();
+	Image imgConAvail = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConAvailable.png")).getImage();
+	
+	// Enhanced Agility
+	Image imgAgiSpent = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Agility/AgilitySpent.png")).getImage();
+	Image imgAgiAvail = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Agility/AgilityAvailable.png")).getImage();
+	
+	// Enhanced Stamina
+	Image imgStaSpent = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/StaminaSpent.png")).getImage();
+	Image imgStaAvail = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/StaminaAvailable.png")).getImage();
 
 	public static void NewScreen() {
 		EventQueue.invokeLater(new Runnable() {
@@ -46,6 +63,7 @@ public class JediExpertise {
 
 	private void initialize() {
 		frmJediExpertise = new JFrame();
+		frmJediExpertise.setIconImage(Toolkit.getDefaultToolkit().getImage(JediExpertise.class.getResource("/icon/icon.png")));
 		frmJediExpertise.getContentPane().setBackground(new Color(0, 128, 128));
 		frmJediExpertise.setResizable(false);
 		frmJediExpertise.setTitle("Jedi Expertise Calculator");
@@ -53,26 +71,8 @@ public class JediExpertise {
 		frmJediExpertise.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJediExpertise.getContentPane().setLayout(null);
 		
-		JLabel strImg = new JLabel("");
-		strImg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (enhancedStr < 2 && addPoints) {
-					availablePoints--;
-					enhancedStr++;
-				}
-				else if (enhancedStr > 0 && !addPoints) {
-					availablePoints++;
-					enhancedStr--;
-				}
-			}
-		});
-		if (enhancedStr == 0) {
-			Image imgStr = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Strength/StrengthAvailable.png")).getImage();
-			strImg.setIcon(new ImageIcon(imgStr));
-		}
-		strImg.setBounds(145, 43, 87, 87);
-		frmJediExpertise.getContentPane().add(strImg);
+		
+		advancedStrength();
 		
 		JLabel conImg = new JLabel("");
 		conImg.addMouseListener(new MouseAdapter() {
@@ -82,23 +82,22 @@ public class JediExpertise {
 					availablePoints--;
 					enhancedCon++;
 					
-					Image imgCon = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConSpent.png")).getImage();
-					conImg.setIcon(new ImageIcon(imgCon));
+					
+					conImg.setIcon(new ImageIcon(imgConSpent));
 				}
 				else if (enhancedCon > 0 && !addPoints) {
 					availablePoints++;
 					enhancedCon--;
 					
 					if (enhancedCon == 0) {
-						Image imgCon = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConAvailable.png")).getImage();
-						conImg.setIcon(new ImageIcon(imgCon));
+						
+						conImg.setIcon(new ImageIcon(imgConAvail));
 					}
 				}
 			}
 		});
 		if (enhancedCon == 0) {
-			Image imgCon = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConAvailable.png")).getImage();
-			conImg.setIcon(new ImageIcon(imgCon));
+			conImg.setIcon(new ImageIcon(imgConAvail));
 		}
 		conImg.setBounds(303, 43, 87, 87);
 		frmJediExpertise.getContentPane().add(conImg);
@@ -110,24 +109,20 @@ public class JediExpertise {
 				if (enhancedAgi < 2 && addPoints) {
 					availablePoints--;
 					enhancedAgi++;
-					
-					Image imgAgi = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Agility/AgilitySpent.png")).getImage();
-					agiImg.setIcon(new ImageIcon(imgAgi));
+					agiImg.setIcon(new ImageIcon(imgAgiSpent));
 				}
 				else if (enhancedAgi > 0 && !addPoints) {
 					availablePoints++;
 					enhancedAgi--;
 					
 					if (enhancedAgi == 0) {
-						Image imgAgi = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Agility/AgilityAvailable.png")).getImage();
-						agiImg.setIcon(new ImageIcon(imgAgi));
+						agiImg.setIcon(new ImageIcon(imgAgiAvail));
 					}
 				}
 			}
 		});
 		if (enhancedAgi == 0) {
-			Image imgAgi = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Agility/AgilityAvailable.png")).getImage();
-			agiImg.setIcon(new ImageIcon(imgAgi));
+			agiImg.setIcon(new ImageIcon(imgAgiAvail));
 		}
 		agiImg.setBounds(443, 43, 87, 87);
 		frmJediExpertise.getContentPane().add(agiImg);
@@ -139,33 +134,25 @@ public class JediExpertise {
 				if (enhancedSta < 2 && addPoints) {
 					availablePoints--;
 					enhancedSta++;
-					
-					Image imgSta = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/StaminaSpent.png")).getImage();
-					staImg.setIcon(new ImageIcon(imgSta));
+					staImg.setIcon(new ImageIcon(imgStaSpent));
 				}
 				else if (enhancedSta > 0 && !addPoints) {
 					availablePoints++;
 					enhancedSta--;
 					
 					if (enhancedSta == 0) {
-						Image imgSta = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/StaminaAvailable.png")).getImage();
-						staImg.setIcon(new ImageIcon(imgSta));
+						staImg.setIcon(new ImageIcon(imgStaAvail));
 					}
 				}
 			}
 		});
 		if (enhancedSta == 0) {
-			Image imgSta = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/StaminaAvailable.png")).getImage();
-			staImg.setIcon(new ImageIcon(imgSta));
+			staImg.setIcon(new ImageIcon(imgStaAvail));
 		}
 		staImg.setBounds(601, 43, 87, 87);
 		frmJediExpertise.getContentPane().add(staImg);
 		
-		Label availablePointsLabel = new Label("Available Points: 45");
-		availablePointsLabel.setFont(new Font("Dialog", Font.BOLD, 12));
-		availablePointsLabel.setAlignment(Label.CENTER);
-		availablePointsLabel.setBounds(10, 10, 115, 22);
-		frmJediExpertise.getContentPane().add(availablePointsLabel);
+		availablePointsLabel();
 		
 		JRadioButton addRadioButton = new JRadioButton("");
 		addRadioButton.addItemListener(new ItemListener() {
@@ -182,7 +169,6 @@ public class JediExpertise {
 		removeRadioButton.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				addPoints = false;
-				System.out.println("DEBUG: 'Remove Points' checked state is " + removeRadioButton.isSelected());
 			}
 		});
 		buttonGroup.add(removeRadioButton);
@@ -249,5 +235,39 @@ public class JediExpertise {
 		beastMasteryLabel.setFont(new Font("Dialog", Font.BOLD, 15));
 		beastMasteryLabel.setBounds(536, 10, 106, 22);
 		frmJediExpertise.getContentPane().add(beastMasteryLabel);
+	}
+	
+	public void availablePointsLabel() {
+		Label availablePointsLabel = new Label("Available Points: " + availablePoints);
+		availablePointsLabel.setFont(new Font("Dialog", Font.BOLD, 12));
+		availablePointsLabel.setAlignment(Label.CENTER);
+		availablePointsLabel.setBounds(10, 10, 115, 22);
+		frmJediExpertise.getContentPane().add(availablePointsLabel);
+	}
+	
+	public void advancedStrength() {
+		JLabel strImg = new JLabel("");
+		strImg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (enhancedStr < 2 && addPoints) {
+					availablePoints--;
+					enhancedStr++;
+				}
+				else if (enhancedStr > 0 && !addPoints) {
+					availablePoints++;
+					enhancedStr--;
+				}
+			}
+		});
+		if (enhancedStr == 0) {
+			strImg.setIcon(new ImageIcon(imgStrAvail));
+		}
+		strImg.setBounds(145, 43, 87, 87);
+		frmJediExpertise.getContentPane().add(strImg);
+	}
+	
+	private void setAvailablePoints() {
+		//availablePointsLabel.setText("");
 	}
 }

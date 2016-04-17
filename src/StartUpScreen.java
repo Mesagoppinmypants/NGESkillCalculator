@@ -9,6 +9,9 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class StartUpScreen {
 
@@ -34,25 +37,29 @@ public class StartUpScreen {
 	
 	public void initialize() {
 		frmNgeSkillCalculator = new JFrame();
+		frmNgeSkillCalculator.setIconImage(Toolkit.getDefaultToolkit().getImage(StartUpScreen.class.getResource("/icon/icon.png")));
 		frmNgeSkillCalculator.setResizable(false);
 		frmNgeSkillCalculator.setTitle("NGE Skill Calculator");
 		frmNgeSkillCalculator.setBounds(100, 100, 450, 300);
 		frmNgeSkillCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNgeSkillCalculator.getContentPane().setLayout(null);
 		
+		JLabel selectProfLabel = new JLabel("Please select a profession to begin.");
+		selectProfLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		selectProfLabel.setForeground(new Color(0, 128, 128));
+		selectProfLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		selectProfLabel.setBounds(0, 181, 434, 19);
+		frmNgeSkillCalculator.getContentPane().add(selectProfLabel);
+		
 		JLabel welcomeLabel = new JLabel("Welcome to the NGE Skill Calculator!");
+		welcomeLabel.setForeground(new Color(0, 128, 128));
 		welcomeLabel.setBounds(0, 0, 434, 19);
-		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frmNgeSkillCalculator.getContentPane().add(welcomeLabel);
 		
-		JLabel selectProfLabel = new JLabel("Please select a profession to begin.");
-		selectProfLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		selectProfLabel.setBounds(0, 69, 434, 14);
-		frmNgeSkillCalculator.getContentPane().add(selectProfLabel);
-		
 		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(160, 94, 114, 20);
+		comboBox.setBounds(165, 206, 114, 20);
 		comboBox.addItem("Jedi");
 		frmNgeSkillCalculator.getContentPane().add(comboBox);
 		
@@ -68,7 +75,12 @@ public class StartUpScreen {
 				}
 			}
 		});
-		btnSelect.setBounds(182, 125, 79, 23);
+		btnSelect.setBounds(182, 237, 79, 23);
 		frmNgeSkillCalculator.getContentPane().add(btnSelect);
+		
+		JLabel backgroundImageLabel = new JLabel("");
+		backgroundImageLabel.setIcon(new ImageIcon(StartUpScreen.class.getResource("/icon/swg.jpg")));
+		backgroundImageLabel.setBounds(0, 0, 444, 271);
+		frmNgeSkillCalculator.getContentPane().add(backgroundImageLabel);
 	}
 }
