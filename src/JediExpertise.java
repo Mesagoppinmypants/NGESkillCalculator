@@ -35,7 +35,9 @@ public class JediExpertise {
 	
 	// Enhanced Constitution
 	Image imgConSpent = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConSpent.png")).getImage();
+	Image imgConSpentHover = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConSpentHover.png")).getImage();
 	Image imgConAvail = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConAvailable.png")).getImage();
+	Image imgConAvailHover = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Constitution/ConHover.png")).getImage();
 	
 	// Enhanced Agility
 	Image imgAgiSpent = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Agility/AgilitySpent.png")).getImage();
@@ -86,7 +88,7 @@ public class JediExpertise {
 		});
 		buttonGroup.add(addRadioButton);
 		addRadioButton.setSelected(true);
-		addRadioButton.setBounds(103, 40, 21, 23);
+		addRadioButton.setBounds(1000, 601, 21, 23);
 		frmJediExpertise.getContentPane().add(addRadioButton);
 		
 		JRadioButton removeRadioButton = new JRadioButton("");
@@ -96,27 +98,28 @@ public class JediExpertise {
 			}
 		});
 		buttonGroup.add(removeRadioButton);
-		removeRadioButton.setBounds(103, 66, 21, 23);
+		removeRadioButton.setBounds(1000, 627, 21, 23);
 		frmJediExpertise.getContentPane().add(removeRadioButton);
 		
 		Label addLabel = new Label("Add Points");
 		addLabel.setFont(new Font("Dialog", Font.BOLD, 12));
-		addLabel.setBounds(32, 38, 65, 22);
+		addLabel.setBounds(929, 599, 65, 22);
 		frmJediExpertise.getContentPane().add(addLabel);
 		
 		Label removeLabel = new Label("Remove Points");
 		removeLabel.setFont(new Font("Dialog", Font.BOLD, 12));
-		removeLabel.setBounds(10, 66, 87, 22);
+		removeLabel.setBounds(907, 627, 87, 22);
 		frmJediExpertise.getContentPane().add(removeLabel);
 		
 		JLabel TooltipImg = new JLabel("");
-		TooltipImg.setBounds(834, 43, 87, 87);
+		TooltipImg.setIcon(new ImageIcon(JediExpertise.class.getResource("/SkillBoxComponents/aSkillBox.jpg")));
+		TooltipImg.setBounds(742, 53, 87, 87);
 		frmJediExpertise.getContentPane().add(TooltipImg);
 		
 		JRadioButton generalRadioButton = new JRadioButton("");
 		buttonGroup_1.add(generalRadioButton);
 		generalRadioButton.setSelected(true);
-		generalRadioButton.setBounds(396, 10, 21, 23);
+		generalRadioButton.setBounds(116, 10, 21, 23);
 		frmJediExpertise.getContentPane().add(generalRadioButton);
 		
 		JRadioButton pathRadioButton = new JRadioButton("");
@@ -129,7 +132,7 @@ public class JediExpertise {
 			}
 		});
 		buttonGroup_1.add(pathRadioButton);
-		pathRadioButton.setBounds(486, 10, 21, 23);
+		pathRadioButton.setBounds(206, 10, 21, 23);
 		frmJediExpertise.getContentPane().add(pathRadioButton);
 		
 		JRadioButton beastMasteryRadioButton = new JRadioButton("");
@@ -142,35 +145,46 @@ public class JediExpertise {
 			}
 		});
 		buttonGroup_1.add(beastMasteryRadioButton);
-		beastMasteryRadioButton.setBounds(648, 10, 21, 23);
+		beastMasteryRadioButton.setBounds(368, 10, 21, 23);
 		frmJediExpertise.getContentPane().add(beastMasteryRadioButton);
 		
 		Label generalLabel = new Label("Jedi General");
 		generalLabel.setFont(new Font("Dialog", Font.BOLD, 15));
-		generalLabel.setBounds(290, 10, 100, 22);
+		generalLabel.setBounds(10, 10, 100, 22);
 		frmJediExpertise.getContentPane().add(generalLabel);
 		
 		Label pathLabel = new Label("Path");
 		pathLabel.setFont(new Font("Dialog", Font.BOLD, 15));
-		pathLabel.setBounds(443, 10, 37, 22);
+		pathLabel.setBounds(163, 10, 37, 22);
 		frmJediExpertise.getContentPane().add(pathLabel);
 		
 		Label beastMasteryLabel = new Label("Beast Mastery");
 		beastMasteryLabel.setFont(new Font("Dialog", Font.BOLD, 15));
-		beastMasteryLabel.setBounds(536, 10, 106, 22);
+		beastMasteryLabel.setBounds(256, 10, 106, 22);
 		frmJediExpertise.getContentPane().add(beastMasteryLabel);
+		
+		Label skillNameLabel = new Label("Current Skill Name");
+		skillNameLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+		skillNameLabel.setBounds(835, 82, 184, 22);
+		frmJediExpertise.getContentPane().add(skillNameLabel);
+		
+		Label skillDescriptionLabel = new Label("Current skill description.");
+		skillDescriptionLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		skillDescriptionLabel.setBounds(752, 146, 177, 22);
+		frmJediExpertise.getContentPane().add(skillDescriptionLabel);
 	}
 	
 	public void availablePointsLabel() {
 		availablePointsLabel = new Label("Available Points: " + availablePoints);
 		availablePointsLabel.setFont(new Font("Dialog", Font.BOLD, 12));
 		availablePointsLabel.setAlignment(Label.CENTER);
-		availablePointsLabel.setBounds(10, 10, 115, 22);
+		availablePointsLabel.setBounds(907, 571, 115, 22);
 		frmJediExpertise.getContentPane().add(availablePointsLabel);
 	}
 	
 	public void advancedConstitution() {
 		JLabel conImg = new JLabel("");
+		conImg.setIcon(new ImageIcon(JediExpertise.class.getResource("/SkillBoxComponents/aSkillBox.jpg")));
 		conImg.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -179,7 +193,7 @@ public class JediExpertise {
 					enhancedCon++;
 					
 					
-					conImg.setIcon(new ImageIcon(imgConSpent));
+					conImg.setIcon(new ImageIcon(imgConSpentHover));
 				}
 				else if (enhancedCon > 0 && !addPoints) {
 					availablePoints++;
@@ -192,16 +206,35 @@ public class JediExpertise {
 				}
 				setAvailablePoints();
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if (enhancedCon > 0) {
+					conImg.setIcon(new ImageIcon(imgConSpentHover));
+				}
+				else {
+					conImg.setIcon(new ImageIcon(imgConAvailHover));
+				}
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (enhancedCon > 0) {
+					conImg.setIcon(new ImageIcon(imgConSpent));
+				}
+				else {
+					conImg.setIcon(new ImageIcon(imgConAvail));
+				}
+			}
 		});
 		if (enhancedCon == 0) {
 			conImg.setIcon(new ImageIcon(imgConAvail));
 		}
-		conImg.setBounds(303, 43, 87, 87);
+		conImg.setBounds(240, 110, 87, 87);
 		frmJediExpertise.getContentPane().add(conImg);
 	}
 	
 	public void advancedStamina() {
 		JLabel staImg = new JLabel("");
+		staImg.setIcon(new ImageIcon(JediExpertise.class.getResource("/SkillBoxComponents/aSkillBox.jpg")));
 		staImg.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -224,12 +257,13 @@ public class JediExpertise {
 		if (enhancedSta == 0) {
 			staImg.setIcon(new ImageIcon(imgStaAvail));
 		}
-		staImg.setBounds(601, 43, 87, 87);
+		staImg.setBounds(330, 110, 87, 87);
 		frmJediExpertise.getContentPane().add(staImg);
 	}
 	
 	public void advancedAgility() {
 		JLabel agiImg = new JLabel("");
+		agiImg.setIcon(new ImageIcon(JediExpertise.class.getResource("/SkillBoxComponents/aSkillBox.jpg")));
 		agiImg.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -252,12 +286,13 @@ public class JediExpertise {
 		if (enhancedAgi == 0) {
 			agiImg.setIcon(new ImageIcon(imgAgiAvail));
 		}
-		agiImg.setBounds(443, 43, 87, 87);
+		agiImg.setBounds(420, 110, 87, 87);
 		frmJediExpertise.getContentPane().add(agiImg);
 	}
 	
 	public void advancedStrength() {
 		JLabel strImg = new JLabel("");
+		strImg.setIcon(new ImageIcon(JediExpertise.class.getResource("/SkillBoxComponents/aSkillBox.jpg")));
 		strImg.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -275,7 +310,7 @@ public class JediExpertise {
 		if (enhancedStr == 0) {
 			strImg.setIcon(new ImageIcon(imgStrAvail));
 		}
-		strImg.setBounds(145, 43, 87, 87);
+		strImg.setBounds(150, 110, 87, 87);
 		frmJediExpertise.getContentPane().add(strImg);
 	}
 	
@@ -283,6 +318,5 @@ public class JediExpertise {
 		if (availablePointsLabel.getText() != "Available Points: " + availablePoints) {
 			availablePointsLabel.setText("Available Points: " + availablePoints);
 		}
-		
 	}
 }
