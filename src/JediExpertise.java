@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 public class JediExpertise {
 
 	private JFrame frmJediExpertise;
+	private Label availablePointsLabel;
 	
 	private boolean addPoints = true;
 	
@@ -71,87 +72,10 @@ public class JediExpertise {
 		frmJediExpertise.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJediExpertise.getContentPane().setLayout(null);
 		
-		
 		advancedStrength();
-		
-		JLabel conImg = new JLabel("");
-		conImg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (enhancedCon < 2 && addPoints) {
-					availablePoints--;
-					enhancedCon++;
-					
-					
-					conImg.setIcon(new ImageIcon(imgConSpent));
-				}
-				else if (enhancedCon > 0 && !addPoints) {
-					availablePoints++;
-					enhancedCon--;
-					
-					if (enhancedCon == 0) {
-						
-						conImg.setIcon(new ImageIcon(imgConAvail));
-					}
-				}
-			}
-		});
-		if (enhancedCon == 0) {
-			conImg.setIcon(new ImageIcon(imgConAvail));
-		}
-		conImg.setBounds(303, 43, 87, 87);
-		frmJediExpertise.getContentPane().add(conImg);
-		
-		JLabel agiImg = new JLabel("");
-		agiImg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (enhancedAgi < 2 && addPoints) {
-					availablePoints--;
-					enhancedAgi++;
-					agiImg.setIcon(new ImageIcon(imgAgiSpent));
-				}
-				else if (enhancedAgi > 0 && !addPoints) {
-					availablePoints++;
-					enhancedAgi--;
-					
-					if (enhancedAgi == 0) {
-						agiImg.setIcon(new ImageIcon(imgAgiAvail));
-					}
-				}
-			}
-		});
-		if (enhancedAgi == 0) {
-			agiImg.setIcon(new ImageIcon(imgAgiAvail));
-		}
-		agiImg.setBounds(443, 43, 87, 87);
-		frmJediExpertise.getContentPane().add(agiImg);
-		
-		JLabel staImg = new JLabel("");
-		staImg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (enhancedSta < 2 && addPoints) {
-					availablePoints--;
-					enhancedSta++;
-					staImg.setIcon(new ImageIcon(imgStaSpent));
-				}
-				else if (enhancedSta > 0 && !addPoints) {
-					availablePoints++;
-					enhancedSta--;
-					
-					if (enhancedSta == 0) {
-						staImg.setIcon(new ImageIcon(imgStaAvail));
-					}
-				}
-			}
-		});
-		if (enhancedSta == 0) {
-			staImg.setIcon(new ImageIcon(imgStaAvail));
-		}
-		staImg.setBounds(601, 43, 87, 87);
-		frmJediExpertise.getContentPane().add(staImg);
-		
+		advancedStamina();
+		advancedAgility();
+		advancedConstitution();
 		availablePointsLabel();
 		
 		JRadioButton addRadioButton = new JRadioButton("");
@@ -238,11 +162,98 @@ public class JediExpertise {
 	}
 	
 	public void availablePointsLabel() {
-		Label availablePointsLabel = new Label("Available Points: " + availablePoints);
+		availablePointsLabel = new Label("Available Points: " + availablePoints);
 		availablePointsLabel.setFont(new Font("Dialog", Font.BOLD, 12));
 		availablePointsLabel.setAlignment(Label.CENTER);
 		availablePointsLabel.setBounds(10, 10, 115, 22);
 		frmJediExpertise.getContentPane().add(availablePointsLabel);
+	}
+	
+	public void advancedConstitution() {
+		JLabel conImg = new JLabel("");
+		conImg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (enhancedCon < 2 && addPoints) {
+					availablePoints--;
+					enhancedCon++;
+					
+					
+					conImg.setIcon(new ImageIcon(imgConSpent));
+				}
+				else if (enhancedCon > 0 && !addPoints) {
+					availablePoints++;
+					enhancedCon--;
+					
+					if (enhancedCon == 0) {
+						
+						conImg.setIcon(new ImageIcon(imgConAvail));
+					}
+				}
+				setAvailablePoints();
+			}
+		});
+		if (enhancedCon == 0) {
+			conImg.setIcon(new ImageIcon(imgConAvail));
+		}
+		conImg.setBounds(303, 43, 87, 87);
+		frmJediExpertise.getContentPane().add(conImg);
+	}
+	
+	public void advancedStamina() {
+		JLabel staImg = new JLabel("");
+		staImg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (enhancedSta < 2 && addPoints) {
+					availablePoints--;
+					enhancedSta++;
+					staImg.setIcon(new ImageIcon(imgStaSpent));
+				}
+				else if (enhancedSta > 0 && !addPoints) {
+					availablePoints++;
+					enhancedSta--;
+					
+					if (enhancedSta == 0) {
+						staImg.setIcon(new ImageIcon(imgStaAvail));
+					}
+				}
+				setAvailablePoints();
+			}
+		});
+		if (enhancedSta == 0) {
+			staImg.setIcon(new ImageIcon(imgStaAvail));
+		}
+		staImg.setBounds(601, 43, 87, 87);
+		frmJediExpertise.getContentPane().add(staImg);
+	}
+	
+	public void advancedAgility() {
+		JLabel agiImg = new JLabel("");
+		agiImg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (enhancedAgi < 2 && addPoints) {
+					availablePoints--;
+					enhancedAgi++;
+					agiImg.setIcon(new ImageIcon(imgAgiSpent));
+				}
+				else if (enhancedAgi > 0 && !addPoints) {
+					availablePoints++;
+					enhancedAgi--;
+					
+					if (enhancedAgi == 0) {
+						agiImg.setIcon(new ImageIcon(imgAgiAvail));
+					}
+				}
+				setAvailablePoints();
+			}
+		});
+		if (enhancedAgi == 0) {
+			agiImg.setIcon(new ImageIcon(imgAgiAvail));
+		}
+		agiImg.setBounds(443, 43, 87, 87);
+		frmJediExpertise.getContentPane().add(agiImg);
 	}
 	
 	public void advancedStrength() {
@@ -258,6 +269,7 @@ public class JediExpertise {
 					availablePoints++;
 					enhancedStr--;
 				}
+				setAvailablePoints();
 			}
 		});
 		if (enhancedStr == 0) {
@@ -268,6 +280,9 @@ public class JediExpertise {
 	}
 	
 	private void setAvailablePoints() {
-		//availablePointsLabel.setText("");
+		if (availablePointsLabel.getText() != "Available Points: " + availablePoints) {
+			availablePointsLabel.setText("Available Points: " + availablePoints);
+		}
+		
 	}
 }
