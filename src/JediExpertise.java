@@ -18,6 +18,8 @@ public class JediExpertise {
 
 	private JFrame frmJediExpertise;
 	private Label availablePointsLabel;
+	private Label skillNameLabel;
+	private Label skillDescriptionLabel;
 	
 	private boolean addPoints = true;
 	
@@ -163,14 +165,14 @@ public class JediExpertise {
 		beastMasteryLabel.setBounds(256, 10, 106, 22);
 		frmJediExpertise.getContentPane().add(beastMasteryLabel);
 		
-		Label skillNameLabel = new Label("Current Skill Name");
+		skillNameLabel = new Label("Current Skill Name");
 		skillNameLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		skillNameLabel.setBounds(835, 82, 184, 22);
+		skillNameLabel.setBounds(835, 82, 229, 22);
 		frmJediExpertise.getContentPane().add(skillNameLabel);
 		
-		Label skillDescriptionLabel = new Label("Current skill description.");
+		skillDescriptionLabel = new Label("Current skill description.");
 		skillDescriptionLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		skillDescriptionLabel.setBounds(752, 146, 177, 22);
+		skillDescriptionLabel.setBounds(752, 146, 312, 22);
 		frmJediExpertise.getContentPane().add(skillDescriptionLabel);
 	}
 	
@@ -214,6 +216,8 @@ public class JediExpertise {
 				else {
 					conImg.setIcon(new ImageIcon(imgConAvailHover));
 				}
+				skillNameLabel.setText("Enhanced Constitution");
+				skillDescriptionLabel.setText("Constitution increased by 25 points per point spent.");
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
