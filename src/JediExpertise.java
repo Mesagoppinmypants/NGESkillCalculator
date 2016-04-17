@@ -25,6 +25,7 @@ public class JediExpertise {
 	private int enhancedSta;
 	private int availablePoints = 45;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 
 	public static void NewScreen() {
 		EventQueue.invokeLater(new Runnable() {
@@ -64,7 +65,6 @@ public class JediExpertise {
 					availablePoints++;
 					enhancedStr--;
 				}
-				System.out.println("Available Points: " + availablePoints + "\nEnhanced Strength Points: " + enhancedStr);
 			}
 		});
 		if (enhancedStr == 0) {
@@ -94,7 +94,6 @@ public class JediExpertise {
 						conImg.setIcon(new ImageIcon(imgCon));
 					}
 				}
-				System.out.println("Available Points: " + availablePoints + "\nEnhanced Constitution Points: " + enhancedCon);
 			}
 		});
 		if (enhancedCon == 0) {
@@ -124,7 +123,6 @@ public class JediExpertise {
 						agiImg.setIcon(new ImageIcon(imgAgi));
 					}
 				}
-				System.out.println("Available Points: " + availablePoints + "\nEnhanced Agility Points: " + enhancedAgi);
 			}
 		});
 		if (enhancedAgi == 0) {
@@ -150,11 +148,10 @@ public class JediExpertise {
 					enhancedSta--;
 					
 					if (enhancedSta == 0) {
-						Image imgSta = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/ConAvailable.png")).getImage();
+						Image imgSta = new ImageIcon(this.getClass().getResource("/Jedi/First Row/Enhanced Stamina/StaminaAvailable.png")).getImage();
 						staImg.setIcon(new ImageIcon(imgSta));
 					}
 				}
-				System.out.println("Available Points: " + availablePoints + "\nEnhanced Stamina Points: " + enhancedSta);
 			}
 		});
 		if (enhancedSta == 0) {
@@ -164,17 +161,16 @@ public class JediExpertise {
 		staImg.setBounds(601, 43, 87, 87);
 		frmJediExpertise.getContentPane().add(staImg);
 		
-		Label label = new Label("Available Points: 45");
-		label.setFont(new Font("Dialog", Font.BOLD, 12));
-		label.setAlignment(Label.CENTER);
-		label.setBounds(10, 10, 115, 22);
-		frmJediExpertise.getContentPane().add(label);
+		Label availablePointsLabel = new Label("Available Points: 45");
+		availablePointsLabel.setFont(new Font("Dialog", Font.BOLD, 12));
+		availablePointsLabel.setAlignment(Label.CENTER);
+		availablePointsLabel.setBounds(10, 10, 115, 22);
+		frmJediExpertise.getContentPane().add(availablePointsLabel);
 		
 		JRadioButton addRadioButton = new JRadioButton("");
 		addRadioButton.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				addPoints = true;
-				System.out.println("DEBUG: 'Add Points' checked state is " + addRadioButton.isSelected());
 			}
 		});
 		buttonGroup.add(addRadioButton);
@@ -202,9 +198,56 @@ public class JediExpertise {
 		removeLabel.setFont(new Font("Dialog", Font.BOLD, 12));
 		removeLabel.setBounds(10, 66, 87, 22);
 		frmJediExpertise.getContentPane().add(removeLabel);
-	}
-	
-	public void CheckCheckBoxState() {
 		
+		JLabel TooltipImg = new JLabel("");
+		TooltipImg.setBounds(834, 43, 87, 87);
+		frmJediExpertise.getContentPane().add(TooltipImg);
+		
+		JRadioButton generalRadioButton = new JRadioButton("");
+		buttonGroup_1.add(generalRadioButton);
+		generalRadioButton.setSelected(true);
+		generalRadioButton.setBounds(396, 10, 21, 23);
+		frmJediExpertise.getContentPane().add(generalRadioButton);
+		
+		JRadioButton pathRadioButton = new JRadioButton("");
+		pathRadioButton.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (pathRadioButton.isSelected()) {
+					// TODO: Implement Path Selection
+					System.out.println("Debug: The Path part of the Jedi expertise is not implemented.");
+				}
+			}
+		});
+		buttonGroup_1.add(pathRadioButton);
+		pathRadioButton.setBounds(486, 10, 21, 23);
+		frmJediExpertise.getContentPane().add(pathRadioButton);
+		
+		JRadioButton beastMasteryRadioButton = new JRadioButton("");
+		beastMasteryRadioButton.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (beastMasteryRadioButton.isSelected()) {
+					// TODO: Implement Beast Mastery Selection
+					System.out.println("Debug: The Beast Mastery part of the Jedi expertise is not implemented.");
+				}
+			}
+		});
+		buttonGroup_1.add(beastMasteryRadioButton);
+		beastMasteryRadioButton.setBounds(648, 10, 21, 23);
+		frmJediExpertise.getContentPane().add(beastMasteryRadioButton);
+		
+		Label generalLabel = new Label("Jedi General");
+		generalLabel.setFont(new Font("Dialog", Font.BOLD, 15));
+		generalLabel.setBounds(290, 10, 100, 22);
+		frmJediExpertise.getContentPane().add(generalLabel);
+		
+		Label pathLabel = new Label("Path");
+		pathLabel.setFont(new Font("Dialog", Font.BOLD, 15));
+		pathLabel.setBounds(443, 10, 37, 22);
+		frmJediExpertise.getContentPane().add(pathLabel);
+		
+		Label beastMasteryLabel = new Label("Beast Mastery");
+		beastMasteryLabel.setFont(new Font("Dialog", Font.BOLD, 15));
+		beastMasteryLabel.setBounds(536, 10, 106, 22);
+		frmJediExpertise.getContentPane().add(beastMasteryLabel);
 	}
 }
